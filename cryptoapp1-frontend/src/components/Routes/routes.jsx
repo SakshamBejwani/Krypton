@@ -1,10 +1,17 @@
+import { Switch } from 'antd'
 import React from 'react'
-
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import Login from '../../pages/Login'
 function routes() {
     return (
-        <div>
+        <Switch>
+            <Router>
             
-        </div>
+                <Route exact path="/" component={Login} />
+           
+            </Router>
+         </Switch>
+         
     )
 }
 
