@@ -1,12 +1,18 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
-import {useHistory, Link} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 const responseGoogle = (response) => {
+    
     console.log("Google Data", response.profileObj);
+    // console.log(response.profileObj.name)
+    // console.log(response.profileObj.givenName)
+    // console.log(response.profileObj.imageUrl)
     localStorage.setItem('gdata', response.profileObj)
+    
   }
 function Login() {
+    
     return (
         <div class="authincation h-100 vh-100">
         <div class="container h-100">

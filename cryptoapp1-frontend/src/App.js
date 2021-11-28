@@ -5,7 +5,6 @@ import Routes from './components/Routes/routes.jsx';
 function App() {
   return (
     <div className="App">
-      
       <Routes />
     </div>
   );

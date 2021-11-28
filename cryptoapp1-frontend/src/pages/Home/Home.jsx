@@ -1,6 +1,6 @@
 import React from 'react'
 
-function leftnav() {
+function Home() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function leftnav() {
     )
 }
 
-export default leftnav
+export default Home
