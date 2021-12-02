@@ -9,7 +9,7 @@ function routes() {
         <Router>
             <Switch>
                 <Route exact path="/" component= { Login } />
-                <Nav />
+                
                 <Route exact path="/home" component= { Home } />
          </Switch>
         </Router>
