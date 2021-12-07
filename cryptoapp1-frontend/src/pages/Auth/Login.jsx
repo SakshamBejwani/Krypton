@@ -19,13 +19,25 @@ function Login() {
         localStorage.setItem('gdata', userData.profileObj)
         setIsSnackBar(true)
         setSnackMessage("Logged in Successfully" )
-        
+        refreshTokenSetup(response)
     }
     const errorGoogle = (response) => {
         setIsSnackBar(true)
         setSnackMessage("Something Went Wrong!" )
         
     }
+    const refreshTokenSetup = (res) => {
+        let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 *60) * 1000;
+
+        const refreshToken = async () => {
+            const newAuthRes = await res.reloadAuthResponse();
+            refreshTiming = (newAuthRes.expires_in || 3600 - 5 *60) * 1000;
+            console.log('New AuthToken', newAuthRes.id_token);
+            setTimeout(refreshToken, refreshTiming);
+
+        };
+        setTimeout(refreshToken, refreshTiming);
+    };
 
     const closeSnack=()=>{
         setIsSnackBar(false)
@@ -34,8 +46,8 @@ function Login() {
 
     return (
         
-        (redirectPage) ? (<Redirect to="/home"/>)
-            
+        (redirectPage) ? 
+            (<Redirect to="/home"/>)
         :
         (
         <>
@@ -78,6 +90,8 @@ function Login() {
                                         <div class="text-center">
                                             <GoogleLogin class="btn btn-primary btn-block"
                                             clientId="730717924427-ipl776uruqsjrbc0tfuqk39jt1bi5bea.apps.googleusercontent.com"
+                                            approvalPrompt="force"
+                                            prompt='consent'
                                             buttonText="Login"
                                             onSuccess={responseGoogle}
                                             onFailure={errorGoogle}
