@@ -2,3 +2,22 @@
     width: 100%;
     margin-top: 10px;;
 }
+
+.rounded-xl {
+    border-radius: 10%;
+}
+
+.none-decorate{
+    text-decoration: none;
+    color: white;
+    
+}
+.font-orange{
+    color: #EB8153;
+}
+.container-max{
+    width: 90vw;;
+}
+.widget{
+    min-height: 40vh;;
+}

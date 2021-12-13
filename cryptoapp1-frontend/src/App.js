@@ -6,7 +6,7 @@ import Header from './components/Header/Nav'
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div id="main-wrapper">
         <Routes />
       </div>
