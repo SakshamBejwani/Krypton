@@ -27,7 +27,7 @@ function Nav() {
                             <div class="nk-header-mobile">
                                 <div class="nk-header-brand">
                                     <a href="html/index.html" class="logo-link">
-                                        <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        {/* <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="500" height="500" rx="70" fill="url(#paint0_radial_10_9)"/>
                                         <path d="M254.8 359.2H259.6L286 322.8H313.6V324L281.6 369.4V373L316.8 420.8V422H288L259.6 383.2H254.8V422H229.6V282H254.8V359.2ZM339.261 322.8H381.261V337.2H384.861C386.728 331.733 389.861 327.533 394.261 324.6C398.794 321.533 404.194 320 410.461 320C420.328 320 428.261 323.133 434.261 329.4C440.261 335.533 443.261 344.933 443.261 357.6V362L417.261 364.4V361.6C417.261 356.133 415.861 351.8 413.061 348.6C410.261 345.267 406.061 343.6 400.461 343.6C394.861 343.6 390.461 345.533 387.261 349.4C384.061 353.267 382.461 358.8 382.461 366V398H405.261V422H336.861V398H357.261V346.8H339.261V322.8Z" fill="black"/>
                                         <defs>
@@ -36,7 +36,7 @@ function Nav() {
                                         <stop offset="1" stop-color="#DBDBDB"/>
                                         </radialGradient>
                                         </defs>
-                                        </svg>
+                                        </svg> */}
 
                                     </a>
                                 </div>

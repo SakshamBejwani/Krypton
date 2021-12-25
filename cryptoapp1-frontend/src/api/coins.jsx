@@ -26,3 +26,16 @@ export const getSpecificCoinMetaData=( callback )=>{
 
 }
 
+export const getGlobalStats=( callback )=>{
+
+    let headers = new Headers();
+    headers.append('X-CMC_PRO_API_KEY', key);
+    headers.append('Content-Type', 'application/json'); 
+    headers.append('accept', 'application/json');
+
+    fetch(coinMarketServerUrl+'cryptocurrency/listings/latest' , { headers })
+    .then((response)=>callback(response)) 
+    .catch((error)=>{console.log(error)})
+
+}
+

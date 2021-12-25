@@ -10,8 +10,10 @@ function Home() {
     const [loading, setLoading] = useState(true)
 	useEffect(() => {
         getSpecificCoinMetaData(getSpecificCoinMetaDataCallback)
+        
     }, [])
 	
+
 	const getSpecificCoinMetaDataCallback =(response)=>{
         if(response.status === 200){
             response.json().then(data=>{
@@ -28,9 +30,9 @@ function Home() {
         <div class="nk-content nk-content-fluid">
                 <div class="container-xl wide-xl">
                     <div class="nk-block-head-content">
-                        <h3 class="nk-block-title page-title">Investment Dashboard</h3>
+                        <h3 class="nk-block-title page-title">Crypto Markets</h3>
                         <div class="nk-block-des text-soft">
-                            <p>Welcome to DashLite Dashboard Template.</p>
+                            <p>Worldwide</p>
                         </div>
 				<div class="row pt-5">
                     <div class="col-lg-12">
@@ -38,6 +40,14 @@ function Home() {
                                 <div class="card card-bordered card-preview">
 							        <table class="table table-orders">
                                         <thead class="tb-odr-head">
+                                        {loading? (
+                                                <>
+                                                <td colspan="12">
+                                                <Skeleton variant="rectangular"  animation="wave"  className="w-10" height={40} />
+                                                </td>
+                                                
+                                              </>  
+                                            ):(
                                             <tr class="py-5 tb-odr-item" >
                                                 <th className="text-center"><strong>#</strong></th>
                                                 <th className="px-5"><strong>Name</strong></th>
@@ -50,6 +60,7 @@ function Home() {
                                                 <th></th>
                                                 
                                             </tr>
+                                            )}
                                         </thead>
                                         <tbody>
                                             {loading? (
