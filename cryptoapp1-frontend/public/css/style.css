@@ -343,6 +343,7 @@ sup {
   top: -.5em; }
 
 a {
+  cursor: pointer;
   color: #EB8153;
   text-decoration: none;
   background-color: transparent; }

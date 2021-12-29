@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
 .google-button{
     width: 100%;
     margin-top: 10px;;
@@ -9,15 +13,26 @@
 
 .none-decorate{
     text-decoration: none;
-    color: white;
-    
+    color:#b6c6e3;
+
 }
+
 .font-orange{
-    color: #EB8153;
+    color: #e03030;
+}
+.font-green{
+    color: rgb(44, 194, 44)
 }
 .container-max{
     width: 90vw;;
 }
 .widget{
     min-height: 40vh;;
+}
+.min-hw-100{
+    min-height: 80vh;
+    min-width: 100vw;;
+}
+.seperator{
+    color: rgb(224, 0, 0);
 }

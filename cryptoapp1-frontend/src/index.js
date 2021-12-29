@@ -15,6 +15,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+//cors bypass
+export const corsAnywhere = "https://cors-proxy.htmldriven.com/?url="
 //coin market api url definition
 const coinMarketBaseUrl = "https://pro-api.coinmarketcap.com/"
 export const coinMarketServerUrl = coinMarketBaseUrl + "v1/"

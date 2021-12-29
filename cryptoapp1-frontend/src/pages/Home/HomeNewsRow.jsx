@@ -1,15 +1,16 @@
 import React from 'react'
 
-function NewsRow(props) {
+function HomeNewsRow(props) {
     const {index, row} = props;
-
     return (
-        <div class="col">
-        <div class="card card-bordered d-flex flex-column align-items-center">
+        <div class="col  mb-2 ">
+        <div class="card">
         {(row.image)
         ? (
             <>
-                <img src={row.image.thumbnail.contentUrl} class="card-img-top w-max-200px" alt=""/>
+            <div class=" w-100 h-50">
+                <img src={row.image.thumbnail.contentUrl} class="card-img-top img-fluid" alt=""/>
+             </div>
             </>
         ):(
             <>
@@ -31,4 +32,4 @@ function NewsRow(props) {
     )
 }
 
-export default NewsRow
+export default HomeNewsRow

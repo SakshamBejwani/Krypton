@@ -44,7 +44,28 @@ function Nav() {
                                     <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav"><em class="icon ni ni-arrow-left"></em></a>
                                 </div>
                             </div>
-                            
+                            <ul class="nk-menu nk-menu-main ui-s2">
+                                <li class="nk-menu-item">
+                                    <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-text">Cryptocurrencies</span>
+                                    </a>
+                                    
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-text ">Compare</span>
+                                    </a>
+                                    
+                                    
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="#" class="nk-menu-link">
+                                        <span class="nk-menu-text">Pages</span>
+                                    </a>
+                                </li>
+                                        
+                               
+                            </ul>   
                                
                         </div>
                         <div class="nk-header-tools">

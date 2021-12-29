@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function NotFound() {
     return (
-        <body class="vh-100 bg-secondary">
+        <body class="vh-100 bg-gray-700">
     <div class="authincation h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100 align-items-center">
