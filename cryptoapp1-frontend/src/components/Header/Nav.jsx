@@ -1,6 +1,9 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 function Nav() {
+    const userDetails = useSelector((state) => state.userDetails)
+    console.log('getting user data at nav ', userDetails)
     return (
         <div class="nk-header nk-header-fluid is-theme">
                 <div class="container-xl wide-xl">
@@ -9,7 +12,8 @@ function Nav() {
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav"><em class="icon ni ni-menu"></em></a>
                         </div>
                         <div class="nk-header-brand">
-                        <a href="html/index.html" class="logo-link">
+                        <Link to="/latest">
+                        <a href="#" class="logo-link">
                         <svg width="97.7" height="30" viewBox="0 0 1742 592" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="92" width="500" height="500" rx="70" fill="url(#paint0_radial_13_22)"/>
                         <path d="M102.6 322.4H112.2L165 249.6H220.2V252L156.2 342.8V350L226.6 445.6V448H169L112.2 370.4H102.6V448H52.2V168H102.6V322.4ZM271.522 249.6H355.522V278.4H362.722C366.455 267.467 372.722 259.067 381.522 253.2C390.589 247.067 401.389 244 413.922 244C433.655 244 449.522 250.267 461.522 262.8C473.522 275.067 479.522 293.867 479.522 319.2V328L427.522 332.8V327.2C427.522 316.267 424.722 307.6 419.122 301.2C413.522 294.533 405.122 291.2 393.922 291.2C382.722 291.2 373.922 295.067 367.522 302.8C361.122 310.533 357.922 321.6 357.922 336V400H403.522V448H266.722V400H307.522V297.6H271.522V249.6Z" fill="black"/>
@@ -22,6 +26,7 @@ function Nav() {
                         </defs>
                         </svg>
                         </a>
+                        </Link>
                         </div>
                         <div class="nk-header-menu" data-content="headerNav">
                             <div class="nk-header-mobile">
@@ -46,22 +51,23 @@ function Nav() {
                             </div>
                             <ul class="nk-menu nk-menu-main ui-s2">
                                 <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link">
-                                        <span class="nk-menu-text">Cryptocurrencies</span>
-                                    </a>
+                                    <span class="nk-menu-text none-decorate"><Link to="/latest">Cryptocurrencies</Link></span>
                                     
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link">
-                                        <span class="nk-menu-text ">Compare</span>
-                                    </a>
+                                    
                                     
                                     
                                 </li>
                                 <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link">
-                                        <span class="nk-menu-text">Pages</span>
-                                    </a>
+                                    
+                                        <span class="nk-menu-text "><Link to="/compare">Compare</Link></span>
+                                    
+                                    
+                                    
+                                </li>
+                                <li class="nk-menu-item">
+                                   
+                                        <span class="nk-menu-text"><Link to="/contact">Contact</Link></span>
+                                    
                                 </li>
                                         
                                

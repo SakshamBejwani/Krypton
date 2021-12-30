@@ -9,6 +9,7 @@ import HomeNewsRow from './HomeNewsRow'
 import {getGlobalStats} from '../../api/coins'
 import Footer from '../../components/Footer/Footer'
 function Home() {
+    console.log('userData', localStorage.getItem('gdata'))
 	const [coinData, setCoinData] = useState([])
     const [loading, setLoading] = useState(true)
     const [rows, setRows] = useState(20)
@@ -74,11 +75,7 @@ function Home() {
                                         )} 
                                         
 
-                                        {news =="" &&
-                                        <td colspan="12" className="text-center">
-                                            No News Found!
-                                        </td>
-                                        }
+                                        
                                     </>
                                     )}
                                     </div>       
@@ -110,8 +107,8 @@ function Home() {
                         </div>
                         </div>
                                                 
-                                <div class="row">
-							        <table class=" col table  table-borderless">
+                                <div class="row card rounded">
+							        <table class=" col table table-bordered">
                                         <thead>
                                         {loading? (
                                                 <>
@@ -121,15 +118,16 @@ function Home() {
                                                 
                                               </>  
                                             ):(
-                                            <tr class="tb-odr-item" >
-                                                <th className="text-center"><strong>#</strong></th>
-                                                <th className="text-center"><strong>Name</strong></th>
-                                                <th className="text-center"><strong>Symbol</strong></th>
-                                                <th className="text-center"><strong>Price</strong></th>
-                                                <th className="text-center"><strong>24%</strong></th>
-                                                <th className="text-center"><strong>7d%</strong></th>
-                                                <th className="text-center"><strong>Market Cap</strong></th>
-                                                <th className="text-center"><strong>Volume</strong></th>
+                                            <tr class="tb-odr-item card " >
+                                                {/* <th className="text-white text-center"><strong></strong></th> */}
+                                                <th className="text-white text-center"><strong>#</strong></th>
+                                                <th className="text-white text-center"><strong>Name</strong></th>
+                                                <th className="text-white text-center"><strong>Symbol</strong></th>
+                                                <th className="text-white text-center"><strong>Price</strong></th>
+                                                <th className="text-white text-center"><strong>24%</strong></th>
+                                                <th className="text-white text-center"><strong>7d%</strong></th>
+                                                <th className="text-white text-center"><strong>Market Cap</strong></th>
+                                                <th className="text-white text-center"><strong>Volume</strong></th>
                                                 <th></th>
                                                 
                                             </tr>
@@ -139,7 +137,7 @@ function Home() {
                                             {loading? (
                                                 <>
                                                 <td colspan="12">
-                                                <Skeleton variant="rectangular"  animation="wave"  className="w-10" height={40} />
+                                                <Skeleton variant="rectangular"  animation="wave"  className="w-10" height={150} />
                                                 </td>
                                                 
                                               </>  

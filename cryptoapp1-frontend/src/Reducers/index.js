@@ -1,9 +1,13 @@
 import * as actionTypes from './types'
 import { combineReducers } from 'redux'
+import { NodeExpandOutlined } from '@ant-design/icons/lib/icons'
 
 const initial_user_state={
     authStatus:false,
-    userDetails:{}
+    userDetails:{
+        profileImg: 'None',
+        Name: 'Saksham Bejwani'
+    }
 }
 const user_reducer=(state=initial_user_state,action)=>
 {
@@ -11,7 +15,7 @@ const user_reducer=(state=initial_user_state,action)=>
         case actionTypes.SET_USER_DETAILS:
             return{
                 ...state,
-                insDetails: action.payload.insDetails,
+                userDetails: action.payload.userDetails,
             }
         case actionTypes.SET_AUTH_STATUS:
             return{

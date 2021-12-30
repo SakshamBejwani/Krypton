@@ -1,25 +1,29 @@
 import React, {useEffect, useState} from 'react'
-import { getCoinMetaData } from '../../api/coins'
+import { getCoinMetaData, getCoinQuote } from '../../api/coins'
 import Skeleton from '@mui/material/Skeleton'
 import  Header  from '../../components/Header/Nav';
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import { getNewsByCrypto } from '../../api/news'
 import NewsRow from './NewsRow'
-import { ControlOutlined } from '@ant-design/icons/lib/icons';
-
+import Footer from '../../components/Footer/Footer';
 function About(props) {
 
     const metaData1 = []
+    const quoteArr =[]
 	const [metaData, setMetaData] = useState([]);
     const [news, setNews] = useState([])
     const [coinLoading, setCoinLoading] = useState(true)
     const [loading, setLoading] = useState(true)
+    const [quoteLoading, setQuoteLoading] =useState(true)
+    const [quote, setQuote] = useState([])
     const [tags, setTags] = useState([])
     const [contract, setContract] = useState([])
     const symbolCrypto = props.match.params.crypto;
     useEffect(() => {
+        getCoinQuote(symbolCrypto, getCoinQuoteCallback)
         getNewsByCrypto(symbolCrypto, getNewsByCryptoCallback)
         getCoinMetaData(symbolCrypto, getCoinMetaDataCallback)
+        
 		// console.log(symbolCrypto)
     }, [])
 	
@@ -29,6 +33,16 @@ function About(props) {
                 // console.log('Getting News Of Coin', data.value)
                 setNews(data.value)
                 setLoading(false)
+            })       
+        }
+    }
+    const getCoinQuoteCallback =(response)=>{
+        if(response.status === 200){
+            response.json().then(data=>{
+                quoteArr.push(data.data)
+                console.log(data.data)
+                setQuote(quoteArr[0][symbolCrypto])
+                setQuoteLoading(false)
             })       
         }
     }
@@ -84,7 +98,7 @@ function About(props) {
                                                         </div>
                                                         <div class="row mt-4 mb-2">
                                                             <div>
-                                                                <span class="badge badge-light">Rank #{sessionStorage.getItem('rank')}</span>
+                                                                <span class="badge badge-light">Rank #{quote.cmc_rank}</span>
                                                             </div>
                                                             <div>
                                                                 <span class="badge badge-light ml-2">{metaData.category}</span>
@@ -113,52 +127,98 @@ function About(props) {
                                                         </div>
                                                     </div>
                                                     <div class="col col-lg-8 col-md-7 col-sm-12">
-                                                    <div class="row">
-                                                        {metaData.name} Price ({metaData.symbol})
+                                                    <div class="row d-flex justify-content-between">
+                                                        <div>
+                                                            {metaData.name} Price ({metaData.symbol})
+                                                        </div>
+                                                        <div class="text-white d-flex align-items-center 
+                                                        ">         <span class="badge badge-pill badge-dark"> 
+                                                                 <span> Last Updated:   </span> 
+                                                                 {quote.last_updated}</span>  
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="row mt-1 d-flex align-items-center justify-content-start">
-                                                        <h3 class="mt-1">$  {parseFloat(sessionStorage.getItem('cryptoPrice')).toFixed(4)}</h3>
-                                                        {((sessionStorage.getItem('percentChange'))>0) ? (
+                                                    
+                                                    {quoteLoading? (
                                                             <>
-                                                                <span class="badge badge-sm mx-2  badge-success"><h5>+{parseFloat(sessionStorage.getItem('percentChange')).toFixed(2)}%</h5></span>
+                                                            <td colspan="12">
+                                                            <Skeleton variant="rectangular"  animation="wave"  className="w-10" height={80} />
+                                                            </td>
+                                                            
+                                                        </>  
+                                                        ):(
+                                                          <>  
+                                                        <h3 class="mt-1">$  {parseFloat(quote.quote.USD.price).toFixed(2).toLocaleString('en-US')}</h3>
+                                                        {((quote.quote.USD.percent_change_24h)>0) ? (
+                                                            <>
+                                                                <span class="badge badge-sm mx-2  badge-success"><h5>+{parseFloat(quote.quote.USD.percent_change_24h).toFixed(2)}%</h5></span>
                                                             </>
                                                         ):(
                                                            <>
-                                                            <span class="badge badge-sm mx-2 badge-danger"><h5>{parseFloat(sessionStorage.getItem('percentChange')).toFixed(2)}%</h5></span>
+                                                            <span class="badge badge-sm mx-2 badge-danger"><h5>{parseFloat(quote.quote.USD.percent_change_24h).toFixed(2)}%</h5></span>
                                                             </>
                                                         )}
-                                                        
-                                                        
+                                                        </>
+                                                        )} 
                                                         
                                                     </div>
-                                                    <hr class="seperator"/>
-                                                    <div class="row d-flex align-items-start">
+                                                    <hr class=""/>
+                                                    <div class="row">
+                                                    {quoteLoading? (
+                                                            <>
+                                                            <td colspan="12">
+                                                            <Skeleton variant="rectangular"  animation="wave"  className="w-10" height={80} />
+                                                            </td>
+                                                            
+                                                        </>  
+                                                        ):(
+                                                            <>
+                                                                <div class="bg-light col pt-4 pb-5 pl-3 mx-1 rounded">
+                                                                    <p>
+                                                                    <span class="text-small">Market Cap</span>
+                                                                    <em class="pl-2 icon ni ni-info-fill" data-toggle="tooltip" data-placement="bottom" title="The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.
+
+                                                                    Market Cap = Current Price x Circulating Supply."></em>
+                                                                    </p>
+                                                                    <p CLASS="text-white fw-bold">
+                                                                        ${quote.quote.USD.market_cap}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col pt-4 pb-5  pl-2 mx-1  rounded">
+                                                                    <p>
+                                                                        <span  class="text-small">Diluted Market Cap
+                                                                        </span>
+                                                                        <em class="pl-2 icon ni ni-info-fill" data-toggle="tooltip" data-placement="bottom" title="The market cap if the max supply was in circulation.Fully-diluted market cap (FDMC) = price x max supply. If max supply is null, FDMC = price x total supply. if max supply and total supply are infinite or not available, fully-diluted market cap shows - -."></em>
+                                                                    </p>
+                                                                    <p CLASS="text-white fw-bold">
+                                                                       $ {quote.quote.USD.fully_diluted_market_cap}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col pt-4 pb-5  pl-3 mx-1 rounded">
+                                                                    <p>
+                                                                        <span  class="text-small">Volume
+                                                                        </span>
+                                                                        <span class="badge ml-1 badge-light">24h</span>
+                                                                        <em class="pl-2 icon ni ni-info-fill" data-toggle="tooltip" data-placement="bottom" title="A measure of how much of a cryptocurrency was traded in the last 24 hours."></em>
+                                                                    </p>
+                                                                    <p CLASS="text-white fw-bold">
+                                                                       $ {quote.quote.USD.volume_24h}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col pt-4 pb-5  pl-3 mx-1 rounded">
+                                                                    <p><span class="text-small">Circulating Supply
+                                                                    </span>
+                                                                    <em class="pl-2 icon ni ni-info-fill" data-toggle="tooltip" data-placement="bottom" title="The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market."></em>
+                                                                    <em class=" pl-1 text-primary icon ni ni-check-circle-fill" data-toggle="tooltip" data-placement="bottom" title="The Krypton team has verified the project's circulating supply."></em>
+                                                                    </p>
+                                                                    <p CLASS="text-white fw-bold">
+                                                                       {quote.circulating_supply} {quote.symbol}
+                                                                    </p>
+                                                                </div>
                                                         
-                                                        <div class="col card rounded bg-alert  py-4 mx-1 d-flex flex-column justify-content-center">
-                                                            <div class="row px-3">
-                                                                Market Cap
-                                                            </div>
-                                                            <div class="row px-3 ">
-                                                                <h6>878321783217</h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col card rounded bg-alert  py-4 mx-1 d-flex flex-column justify-content-center">
-                                                            <div class="row px-3">
-                                                                Market Cap1
-                                                            </div>
-                                                            <div class="row px-3 ">
-                                                                <h6>878321783217</h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col card rounded bg-alert  py-4 mx-1 d-flex flex-column justify-content-center">
-                                                            <div class="row px-3">
-                                                                Market Cap
-                                                            </div>
-                                                            <div class="row px-3 ">
-                                                                <h6>878321783217</h6>
-                                                            </div>
-                                                        </div>
-                                                        
+                                                        </>
+                                                        )}
                                                     </div>
                                                     </div>
                                                     </div> 
@@ -166,6 +226,7 @@ function About(props) {
                                                 
                                         </>
                                             )}
+                                           
 									
 									
 								</div>
@@ -185,30 +246,63 @@ function About(props) {
                                 />
                         </div>
                         <div class="col card p-3">
+                        {quoteLoading? (
+                            <>
+                            <td colspan="12">
+                            <Skeleton variant="text"  animation="wave"  className="w-10" height={200} />
+                            </td>
+                                                            
+                        </>  
+                        ):(
+                        <>
                             <div class="row px-4 mt-2">
-                                <h4>{symbolCrypto} Price Statistics</h4>
+                                <h4>{symbolCrypto}  Statistics</h4>
                             </div>
-                            
-                        <div class="row px-4 mt-5">ID: 
-                            <h5 class="pl-5">{metaData.id}</h5>
+                        <div class="row px-4 mt-4 d-flex justify-content-between">
+                            <div class="text-small">{quote.name} Price: </div>
+                        <h6 class="pl-5">${quote.quote.USD.price.toFixed(2)}</h6>
+                        </div> 
+                        <hr class="mx-2 custom-hr"/>
+                        <div class="row px-4  d-flex justify-content-between">
+                            <div class="text-small">ID: </div>
+                            <h6 class="pl-5">{quote.id}</h6>
                         </div>
-                        <hr class="px-3"/>
-                        <div class="row px-4 mt-3">Circulating Volume: 
-                            <h5 class="pl-3">73847</h5>
+                        <hr class="mx-2 custom-hr"/>
+                        <div class="row px-4 d-flex justify-content-between">
+                            <div class="text-small">Circulating Volume:</div> 
+                            <h6 class="pl-3">{quote.circulating_supply}{quote.symbol}</h6>
                         </div>
-                        <hr class="px-3"/>
-                        <div class="row px-4 mt-3">Market Cap: 
-                            <h5 class="pl-3">73847</h5>
+                        <hr class="mx-2 custom-hr"/>
+                        <div class="row px-4 d-flex justify-content-between">
+                            <div class="text-small">Market Dominance:</div> 
+                            <h6 class="pl-3">{parseFloat(quote.quote.USD.market_cap_dominance).toFixed(1)} %</h6>
                         </div>
-                        <hr class="px-3"/>
-                        <div class="row  px-4 mt-3">Market Rank: 
-                            <h5 class="pl-3">73847</h5>
+                        <hr class="mx-2 custom-hr"/>
+                        <div class="row  px-4 d-flex justify-content-between">
+                            <div class="text-small">Market Rank:</div> 
+                            <h6 class="pl-3">#{quote.cmc_rank}</h6>
                         </div>
-                        <hr class="px-3"/>
-                        
+                        <div class="row  px-4 mt-5 d-flex justify-content-between">
+                            <div class="badge badge-dark text-small ">{quote.name} Market cap</div> 
+                        </div>
+                        <hr class="mx-2 custom-hr"/>
+
+                        <div class="row  px-4  d-flex justify-content-between">
+                            <div class="text-small">Market Cap:</div> 
+                            <h6 class="pl-3">${quote.quote.USD.market_cap}</h6>
+                        </div>
+                        <hr class="mx-2 custom-hr"/>
+
+                        <div class="row  px-4  d-flex justify-content-between">
+                            <div class="text-small">Fully Diluted Market Cap:</div> 
+                            <h6 class="pl-3">${quote.quote.USD.fully_diluted_market_cap}</h6>
+                        </div>
+                        </>
+                        )}
 
                         </div>
-                            </div>
+                    </div>
+                           
                             <div class="row">
                                 <div class="col py-4 px-2">
                             <div id="accordion-1" class="accordion accordion-s2">
@@ -257,8 +351,7 @@ function About(props) {
                             </div>
                             </div> */}
                             <div class="row">
-                            <span class="px-2">Latest {symbolCrypto} News</span>
-                            <div class="row px-2  my-2 d-flex justify-content-between">
+                            
                             {loading? (
                                                 <>
                                                 <td colspan="12">
@@ -268,7 +361,8 @@ function About(props) {
                                               </>  
                                     ):(
                                         <>
-                                       
+                                       <span class="px-2">Latest {symbolCrypto} News</span>
+                                        <div class="row px-2  my-2 d-flex justify-content-between">
                                         {news.map((item, index)=>
                                             <NewsRow row={item} index={index}
                                             />
@@ -280,9 +374,10 @@ function About(props) {
                                             No News Found!
                                         </td>
                                         }
+                                        </div>
                                     </>
                                             )}
-                         </div>
+                         
                          </div>
                          </div>
             </div>
@@ -311,7 +406,8 @@ function About(props) {
                     
                 </div>
             </div>
-        </div>               
+        </div>  
+        <Footer/>             
         </>
     )
 }

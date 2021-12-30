@@ -8,13 +8,13 @@ function HomeNewsRow(props) {
         {(row.image)
         ? (
             <>
-            <div class=" w-100 h-50">
+            <div class=" w-100 h-50 ">
                 <img src={row.image.thumbnail.contentUrl} class="card-img-top img-fluid" alt=""/>
              </div>
             </>
         ):(
             <>
-                <div class=" w-max-120px py-5"> <h5 class="py-5">
+                <div class=" py-5 d-flex justify-content-center align-items-center"> <h5 class="py-5">
                 <div class="spinner-border text-light" role="status">
                     <span class="sr-only">Loading...</span>
                 </div></h5

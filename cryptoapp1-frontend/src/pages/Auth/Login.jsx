@@ -1,9 +1,12 @@
 import React,{useState, useEffect} from 'react'
 import GoogleLogin from 'react-google-login'
-import { useHistory, Redirect  } from 'react-router';
+import { useHistory, Redirect } from 'react-router';
+import {Link} from 'react-router-dom'
 import Snackbar from '@mui/material/Snackbar';
-
+import {useDispatch} from 'react-redux'
+import {SET_USER_DETAILS, SET_AUTH_STATUS} from '../../Reducers/types'
 function Login() {
+    const dispatch = useDispatch()
     const [SnackMessage, setSnackMessage] = useState("")
     const [isSnackBar, setIsSnackBar] = useState(false)
     const [userData, setUserData] = useState(null)
@@ -12,19 +15,16 @@ function Login() {
     const responseGoogle = (response) => {
         setRedirectPage(true)
         console.log("Google Data", response.profileObj);
-        // setUserData(response.profileObj)
-        // console.log(userData.profileObj.name)
-        // console.log(userData.profileObj.givenName)
-        // console.log(userData.profileObj.imageUrl)
-        localStorage.setItem('gdata', userData.profileObj)
+        localStorage.setItem('userDetails', response.profileObj)
         setIsSnackBar(true)
         setSnackMessage("Logged in Successfully" )
         refreshTokenSetup(response)
+        dispatch({ type: SET_USER_DETAILS, payload: { userDetails: response.profileObj } })
+        
     }
     const errorGoogle = (response) => {
         setIsSnackBar(true)
         setSnackMessage("Something Went Wrong!" )
-        
     }
     const refreshTokenSetup = (res) => {
         let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 *60) * 1000;
@@ -109,9 +109,9 @@ function Login() {
                                             />  
                                         </div>                              
                                     </form>
-                                    {/* <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="#">Sign up</a></p>
-                                    </div> */}
+                                    <div class="new-account mt-3">
+                                        <p>Continue as Guest? <a class="text-primary" href="#"><Link to="/latest">Click here</Link></a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

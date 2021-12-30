@@ -16,7 +16,16 @@
     color:#b6c6e3;
 
 }
-
+.watchlist-button{
+    cursor: pointer;
+}
+.text-small{
+    font-size: smaller;
+    font-weight: 600;
+}
+.custom-hr{
+    border-top: 1px solid rgb(133, 133, 133);
+}
 .font-orange{
     color: #e03030;
 }

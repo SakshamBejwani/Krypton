@@ -6,29 +6,20 @@ function HomeRow(props) {
     return (
         
         <tr class="py-5">
+            {/* <td class="watchlist-button"><em class="icon ni ni-star"></em></td> */}
             <td className="text-center text-white"><strong>{index + 1}</strong></td>
-            <td onClick={(e)=>{
-                        sessionStorage.setItem('cryptoPrice', row.quote.USD.price)
-                        sessionStorage.setItem('cryptoVolume', row.quote.USD.volume_24h)
-                        sessionStorage.setItem('cryptoMarketCap', row.quote.USD.market_cap )
-                        sessionStorage.setItem('circulatingSupply', row.circulating_supply)
-                        sessionStorage.setItem('dilutedCap', row.quote.USD.fully_diluted_market_cap )
-                        sessionStorage.setItem('percentChange', row.quote.USD.percent_change_24h )
-                        sessionStorage.setItem('rank', row.cmc_rank)
-                        sessionStorage.setItem('marketDominance', row.quote.USD.market_cap_dominance )
-
-            }}>
+            <td class="text-center">
                 <Link to={"/coin/"+row.symbol}><strong class="none-decorate text-white">{row.name}</strong></Link>
             </td>
             <td className="text-center text-white">{row.symbol}</td>
             <td className="text-center text-white">${parseFloat(row.quote.USD.price).toFixed(6)}</td>
             {(parseFloat(row.quote.USD.percent_change_24h)>0) ? (
                  <>
-                    <td class="font-green text-center"><em class="icon ni ni-chevron-up"></em>{parseFloat(row.quote.USD.percent_change_24h).toFixed(2)}%</td>
+                    <td class="font-green text-center">+{parseFloat(row.quote.USD.percent_change_24h).toFixed(2)}%</td>
                 </>
             ):(
                 <>
-                 <td class="font-orange text-center"><em class="icon ni ni-chevron-down"></em>{parseFloat(row.quote.USD.percent_change_24h).toFixed(2)}%</td>
+                 <td class="font-orange text-center">{parseFloat(row.quote.USD.percent_change_24h).toFixed(2)}%</td>
                 </>
             )}
             {(parseFloat(row.quote.USD.percent_change_7d)>0) ? (

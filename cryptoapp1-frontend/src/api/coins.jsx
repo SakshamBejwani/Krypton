@@ -42,4 +42,16 @@ export const getGlobalStats=( callback )=>{
     .catch((error)=>{console.log(error)})
 
 }
+export const getCoinQuote=(crypto, callback )=>{
 
+    let headers = new Headers();
+    headers.append('X-CMC_PRO_API_KEY', key);
+    headers.append('Content-Type', 'application/json'); 
+    headers.append('accept', 'application/json');
+    headers.append("Access-Control-Allow-Origin", "*")
+    headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    fetch(coinMarketServerUrl+'cryptocurrency/quotes/latest?symbol=' + crypto , { headers })
+    .then((response)=>callback(response)) 
+    .catch((error)=>{console.log(error)})
+
+}
