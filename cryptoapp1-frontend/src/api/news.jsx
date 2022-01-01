@@ -5,7 +5,7 @@ export const getNewsByCrypto=(crypto, callback )=>{
     let headers = new Headers();
     headers.append('x-bingapis-sdk', true);
     headers.append('x-rapidapi-host', 'bing-news-search1.p.rapidapi.com');
-    headers.append('x-rapidapi-key', '3659c76eb1msh1044ba32875b7bfp193861jsn57825c109009');
+    headers.append('x-rapidapi-key', '4fb86ad23bmshe15a93fd7843211p199156jsnddc336097524');
     headers.append('Content-Type', 'application/json'); 
     headers.append('accept', 'application/json');
     headers.append("Access-Control-Allow-Origin", "*")

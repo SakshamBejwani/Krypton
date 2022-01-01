@@ -126,13 +126,13 @@ function About(props) {
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col col-lg-8 col-md-7 col-sm-12">
+                                                    <div class="col col-lg-8 col-md-7 col-sm-12 col-xs-12">
                                                     <div class="row d-flex justify-content-between">
                                                         <div>
                                                             {metaData.name} Price ({metaData.symbol})
                                                         </div>
                                                         <div class="text-white d-flex align-items-center 
-                                                        ">         <span class="badge badge-pill badge-dark"> 
+                                                        ">         <span class="badge badge-pill badge-dark my-1"> 
                                                                  <span> Last Updated:   </span> 
                                                                  {quote.last_updated}</span>  
                                                         </div>

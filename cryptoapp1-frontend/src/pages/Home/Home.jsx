@@ -107,8 +107,8 @@ function Home() {
                         </div>
                         </div>
                                                 
-                                <div class="row card rounded">
-							        <table class=" col table table-bordered">
+                                <div class="row card rounded px-2">
+							        <table class="col table table-borderless">
                                         <thead>
                                         {loading? (
                                                 <>
@@ -118,7 +118,7 @@ function Home() {
                                                 
                                               </>  
                                             ):(
-                                            <tr class="tb-odr-item card " >
+                                            <tr class="tb-odr-item " >
                                                 {/* <th className="text-white text-center"><strong></strong></th> */}
                                                 <th className="text-white text-center"><strong>#</strong></th>
                                                 <th className="text-white text-center"><strong>Name</strong></th>

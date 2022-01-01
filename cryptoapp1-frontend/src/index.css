@@ -2,6 +2,10 @@
 *{
     font-family: 'Noto Sans', sans-serif;
 }
+html{
+    scrollbar-width: none;
+}
+
 .google-button{
     width: 100%;
     margin-top: 10px;;
@@ -41,6 +45,15 @@
 .min-hw-100{
     min-height: 80vh;
     min-width: 100vw;;
+}
+.graphWrapper-100{
+    min-height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+    min-width: 100vw;
+}
+.customColumn{
+    height: 33vh;
 }
 .seperator{
     color: rgb(224, 0, 0);

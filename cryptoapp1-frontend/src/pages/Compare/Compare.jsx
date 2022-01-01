@@ -36,10 +36,11 @@ function Compare() {
             setSnackMessage("Limit Reached" )
         }
         if (!disabled) {
-        compareArray.push(crypto)
-        setCryptoList(cryptoList.concat(compareArray))
-        console.log('compare list', cryptoList)
-        }
+            if ( !( crypto in compareArray ) ){
+                compareArray.push(crypto)
+                setCryptoList(cryptoList.concat(compareArray))
+                console.log('compare list', cryptoList)
+        }}
     }, [crypto])
 
 
@@ -63,91 +64,32 @@ function Compare() {
     return (
         <>
         {graphShow ? (
-                    <>  <div class="row px-3 py-1"><span class="badge badge-primary watchlist-button" onClick={changeState}>Go Back</span></div>
-                       <div class="row">
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
+                    <> 
+                    
+                    <div class="bg-white graphWrapper-100">
+                       <div class="row  m-0">
+                       {cryptoList.map((item, index)=>
+                       <> 
+                        
+                        <div class="col h-33 bg-secondary customColumn p-0 col-md-6 col-lg-4 col-sm-4">
                                     <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
+                                        symbol={item+"USD"}
                                         theme={Themes.DARK}
                                         locale="en"
                                         autosize="true"
+                                        hide_top_toolbar={true}
+                                        hideideas={true}
+                                        hide_side_toolbar={true}
                                         // height= ""
                                         // width= ""
                                     />
                             </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
-                            </div>
-                            <div class="col col-md-6 col-lg-4 col-sm-4">
-                                    <TradingViewWidget
-                                        symbol={"BTC"+"USD"}
-                                        theme={Themes.DARK}
-                                        locale="en"
-                                        autosize="true"
-                                        // height= ""
-                                        // width= ""
-                                    />
+                            </>
+                            )}      
                             </div>
 
-                            
-                        </div>
+                          </div>  
+                        
                      </>  
                     ):(
                     <>
@@ -155,31 +97,12 @@ function Compare() {
             <div class="nk-content nk-content-fluid" >
             <div class="container-xl wide-xl">
                 <div class="row mb-3">
-                    <h5>Compare Cryptos'</h5>
+                    <h5>Comparison powered by Krypton</h5>
                 </div>
-                {showCompareRow ? (
-                         <>
-                    <div class="row rounded mt-2 mb-3 d-flex flex-row-reverse justify-content-end">
-                        <div class="col card bg-primary text-white btn d-flex flex-row align-items-center justify-content-center" onClick={changeState}>Compare <em class=" mr-3 ml-1 icon ni ni-list-check"></em></div>
-
-
-                        {(cryptoList.slice(1)).map((item, index)=>
-                            <>  
-                            <div class="col text-center align-items-center justify-content-center btn text-white bg-gray-700 mr-1"><Link to={"/coin/"+item}>{item} </Link></div>
-                                
-                            </>
-                        )}
-                        </div>
-                    </>  
-                        ):(
-                             <>
-                                <td colspan="12">
-                                 <Skeleton variant="text"className="w-10" height={10} />
-                                 </td>
-                             </>
-                        )}
-            <div class="row card rounded">
-							        <table class=" col table  table-borderless">
+                
+            <div class="row  rounded d-flex">
+                <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12  bg-light rounded">
+				    <table class="table  table-borderless ">
                                         <thead>
                                         {loading? (
                                                 <>
@@ -226,7 +149,34 @@ function Compare() {
                                     </>
                                             )}
             </tbody>
-            </table>
+                    </table>
+                </div>
+                <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 rounded px-2 ">
+                {(cryptoList.length)>1 ? (
+                         <>
+                    <div class="row rounded mt-2 mb-3 px-3 d-flex flex-column justify-content-end">
+                        <div class="col card mb-3 bg-primary text-white btn d-flex flex-row align-items-center justify-content-center py-2" onClick={changeState}>Compare <em class=" mr-3 ml-1 icon ni ni-list-check"></em></div>
+
+
+                        {(cryptoList.slice(1)).map((item, index)=>
+                            <>  
+                            <div class="col text-center align-items-center mb-1 justify-content-center btn text-white bg-gray-700 mr-1"><Link to={"/coin/"+item}>{item} </Link></div>
+                                
+                            </>
+                        )}
+                        </div>
+                    </>  
+                        ):(
+                             <>
+                                <div class="row rounded mt-2 mb-3 px-3 d-flex flex-column justify-content-end">
+                                    {/* <div class="col card mb-3 bg-primary text-white btn d-flex flex-row align-items-center justify-content-center" disabled>Compare <em class=" mr-3 ml-1 icon ni ni-list-check"></em></div> */}
+                                    <button type="button" class="text-white btn d-flex flex-row align-items-center justify-content-center  btn btn-secondary btn-lg" disabled>Compare <em class=" mr-3 ml-1 icon ni ni-list-check"></em></button>
+
+                                </div>
+                                
+                             </>
+                        )}
+                </div>
             </div>
             </div>
             </div>

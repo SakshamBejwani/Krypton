@@ -105,42 +105,8 @@ function Nav() {
                                                         <div class="nk-notification-time">2 hrs ago</div>
                                                     </div>
                                                 </div>
-                                                <div class="nk-notification-item dropdown-inner">
-                                                    <div class="nk-notification-icon">
-                                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                    </div>
-                                                    <div class="nk-notification-content">
-                                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                        <div class="nk-notification-time">2 hrs ago</div>
-                                                    </div>
-                                                </div>
-                                                <div class="nk-notification-item dropdown-inner">
-                                                    <div class="nk-notification-icon">
-                                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                    </div>
-                                                    <div class="nk-notification-content">
-                                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                                        <div class="nk-notification-time">2 hrs ago</div>
-                                                    </div>
-                                                </div>
-                                                <div class="nk-notification-item dropdown-inner">
-                                                    <div class="nk-notification-icon">
-                                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                    </div>
-                                                    <div class="nk-notification-content">
-                                                        <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                        <div class="nk-notification-time">2 hrs ago</div>
-                                                    </div>
-                                                </div>
-                                                <div class="nk-notification-item dropdown-inner">
-                                                    <div class="nk-notification-icon">
-                                                        <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                    </div>
-                                                    <div class="nk-notification-content">
-                                                        <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                                        <div class="nk-notification-time">2 hrs ago</div>
-                                                    </div>
-                                                </div>
+                                               
+                                                
                                             </div>
                                         </div>
                                         <div class="dropdown-foot center">
@@ -156,7 +122,7 @@ function Nav() {
                                             </div>
                                             <div class="user-info d-none d-xl-block">
                                                 <div class="user-status">User</div>
-                                                <div class="user-name dropdown-indicator">Saksham Bejwani</div>
+                                                <div class="user-name dropdown-indicator">Guest</div>
                                             </div>
                                         </div>
                                     </a>
@@ -164,21 +130,21 @@ function Nav() {
                                         <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                             <div class="user-card">
                                                 <div class="user-avatar">
-                                                    <span>AB</span>
+                                                    <span>G</span>
                                                 </div>
                                                 <div class="user-info">
-                                                    <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                    <span class="sub-text">info@softnio.com</span>
+                                                    <span class="lead-text">Guest</span>
+                                                    <span class="sub-text">info@krypton.tech</span>
                                                 </div>
                                                 <div class="user-action">
-                                                    <a class="btn btn-icon mr-n2" href="html/invest/profile-setting.html"><em class="icon ni ni-setting"></em></a>
+                                                    <a class="btn btn-icon mr-n2" href="#"><em class="icon ni ni-setting"></em></a>
                                                 </div>
                                             </div>
                                         </div>
                                        
                                         <div class="dropdown-inner">
                                             <ul class="link-list">
-                                                <li><a href="html/invest/profile.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
                                                 {/* <li><a href="html/invest/profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
                                                 <li><a href="html/invest/profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
                                                 <li><a class="dark-mode-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li> */}

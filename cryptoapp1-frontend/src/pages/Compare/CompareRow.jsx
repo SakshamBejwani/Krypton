@@ -24,7 +24,10 @@ function CompareRow(props) {
             )}
             {disabled ? (
                     <>
-                        <td className=" text-center text-light"><em class="icon ni ni-cross"></em></td>
+                        <td className=" text-center text-light">
+                        <span class="badge badge-pill  badge-light">
+                            <em class="icon ni ni-cross"></em>
+                        </span></td>
                                                 
                      </>  
                     ):(
@@ -32,16 +35,19 @@ function CompareRow(props) {
 
                 {selected ? (
                     <>
-                        <td className="text-danger text-center"><em class="watchlist-button icon ni ni-minus" onClick={(e)=>{ 
+                        <td className="text-danger text-center">
+                        <span class="badge badge-pill watchlist-button  badge-danger"  onClick={(e)=>{ 
                         setSelected(!selected)
-                        setRemoveCrypto(row.symbol)}}></em></td>
+                        setRemoveCrypto(row.symbol)}}><em class="icon ni ni-minus"></em></span></td>
                                                 
                      </>  
                     ):(
                      <>
-                <td className="text-primary text-center"><em class="watchlist-button icon ni ni-plus" onClick={(e)=>{ 
-                 setSelected(!selected)
-                 setCrypto(row.symbol)}}></em></td>
+                     <td className="text-primary text-center">
+                     <span class="badge badge-pill watchlist-button badge-primary" onClick={(e)=>{ 
+                         setSelected(!selected)
+                        setCrypto(row.symbol)}}><em class=" icon ni ni-plus" ></em></span>
+                     </td>
                     </>
                     )}
             </>
