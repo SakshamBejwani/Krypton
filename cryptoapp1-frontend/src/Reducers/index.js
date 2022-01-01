@@ -1,7 +1,6 @@
 import * as actionTypes from './types'
 import { combineReducers } from 'redux'
 import { NodeExpandOutlined } from '@ant-design/icons/lib/icons'
-
 const initial_user_state={
     authStatus:false,
     userDetails:{
